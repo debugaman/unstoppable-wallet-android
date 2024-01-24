@@ -89,7 +89,7 @@ private fun SettingSections(
     val baseCurrency by viewModel.baseCurrencyLiveData.observeAsState()
     val language by viewModel.languageLiveData.observeAsState()
     val context = LocalContext.current
-
+/*
     CellUniversalLawrenceSection(
         listOf {
             HsSettingCell(
@@ -175,8 +175,11 @@ private fun SettingSections(
 
     VSpacer(32.dp)
 
+
+ */
     CellUniversalLawrenceSection(
         listOf(
+                /*
             {
                 HsSettingCell(
                     R.string.Settings_SecurityCenter,
@@ -215,6 +218,8 @@ private fun SettingSections(
                     }
                 )
             },
+
+                 */
             {
                 HsSettingCell(
                     R.string.Settings_Language,
@@ -227,7 +232,7 @@ private fun SettingSections(
             },
         )
     )
-
+/*
     VSpacer(32.dp)
 
     CellUniversalLawrenceSection(
@@ -304,6 +309,8 @@ private fun SettingSections(
     )
 
     VSpacer(32.dp)
+
+ */
 }
 
 @Composable
@@ -363,6 +370,7 @@ fun HsSettingCell(
 @Composable
 private fun SettingsFooter(appVersion: String, companyWebPage: String) {
     val context = LocalContext.current
+    /*
     Column(
         modifier = Modifier.fillMaxWidth(),
         horizontalAlignment = Alignment.CenterHorizontally
@@ -395,6 +403,8 @@ private fun SettingsFooter(appVersion: String, companyWebPage: String) {
             text = stringResource(R.string.Settings_CompanyName),
         )
     }
+
+     */
 }
 
 private fun shareAppLink(appLink: String, context: Context) {

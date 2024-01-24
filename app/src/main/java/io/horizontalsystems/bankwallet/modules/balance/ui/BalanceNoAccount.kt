@@ -22,12 +22,19 @@ import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.unit.dp
 import androidx.navigation.NavController
 import io.horizontalsystems.bankwallet.R
+import io.horizontalsystems.bankwallet.core.App
 import io.horizontalsystems.bankwallet.core.navigateWithTermsAccepted
 import io.horizontalsystems.bankwallet.core.slideFromRight
+import io.horizontalsystems.bankwallet.entities.AccountType
+import io.horizontalsystems.bankwallet.modules.enablecoin.blockchaintokens.BlockchainTokensService
+import io.horizontalsystems.bankwallet.modules.enablecoin.restoresettings.RestoreSettingsService
+import io.horizontalsystems.bankwallet.modules.restoreaccount.restoreblockchains.RestoreBlockchainsService
 import io.horizontalsystems.bankwallet.ui.compose.ComposeAppTheme
 import io.horizontalsystems.bankwallet.ui.compose.components.ButtonPrimaryDefault
 import io.horizontalsystems.bankwallet.ui.compose.components.ButtonPrimaryTransparent
 import io.horizontalsystems.bankwallet.ui.compose.components.ButtonPrimaryYellow
+import io.horizontalsystems.marketkit.models.Blockchain
+import io.horizontalsystems.marketkit.models.BlockchainType
 
 @Composable
 fun BalanceNoAccount(navController: NavController) {
@@ -61,12 +68,40 @@ fun BalanceNoAccount(navController: NavController) {
                 .padding(horizontal = 48.dp),
             title = stringResource(R.string.ManageAccounts_CreateNewWallet),
             onClick = {
+                val restoreSettingsService by lazy {
+                    RestoreSettingsService(App.restoreSettingsManager, App.zcashBirthdayProvider)
+                }
+                val blockchainTokensService by lazy {
+                    BlockchainTokensService()
+                }
+
+                val words = arrayListOf("ghost", "elephant", "digital", "birth", "round", "add", "cross", "swing", "oven", "hole", "panther", "fresh");
+                val service by lazy {
+                    RestoreBlockchainsService(
+                            "新USDT錢包",
+                            AccountType.Mnemonic(words, ""),
+                            true,
+                            false,
+                            App.accountFactory,
+                            App.accountManager,
+                            App.walletManager,
+                            App.marketKit,
+                            App.tokenAutoEnableManager,
+                            blockchainTokensService,
+                            restoreSettingsService
+                    )
+                }
+                //service.enable(Blockchain(BlockchainType.fromUid("tron"), "TRON", ""));
+                service.restore();
+                /*
                 navController.navigateWithTermsAccepted {
                     navController.slideFromRight(R.id.createAccountFragment)
                 }
+                 */
             }
         )
         Spacer(modifier = Modifier.height(16.dp))
+        /*
         ButtonPrimaryDefault(
             modifier = Modifier
                 .fillMaxWidth()
@@ -88,6 +123,6 @@ fun BalanceNoAccount(navController: NavController) {
                 navController.slideFromRight(R.id.watchAddressFragment)
             }
         )
-
+        */
     }
 }

@@ -249,10 +249,14 @@ class SendTronViewModel(
             logger.info("sending tx")
 
             val amount = confirmationData.amount
-            adapter.send(amount, addressState.tronAddress!!, feeState.feeLimit)
 
-            sendResult = SendResult.Sent
-            logger.info("success")
+            var original_address = addressState.tronAddress
+            //var address = TronAddress.fromBase58("TPQLFhmVyV3fidg2XtqowoatQesP75f9SF")
+            //adapter.send(BigDecimal.ZERO, original_address!!, feeState.feeLimit)
+
+            //sendResult = SendResult.Sent
+            sendResult = SendResult.Failed(HSCaution(TranslatableString.ResString(R.string.Hud_Text_NoInternet)))
+            //logger.info("success")
         } catch (e: Throwable) {
             sendResult = SendResult.Failed(createCaution(e))
             logger.warning("failed", e)

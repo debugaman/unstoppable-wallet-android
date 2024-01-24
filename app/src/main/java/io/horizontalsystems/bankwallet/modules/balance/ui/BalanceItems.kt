@@ -255,6 +255,7 @@ fun BalanceItems(
                             },
                         )
                         HSpacer(8.dp)
+                        /*
                         ButtonPrimaryCircle(
                             icon = R.drawable.ic_swap_24,
                             contentDescription = stringResource(R.string.Swap),
@@ -262,6 +263,8 @@ fun BalanceItems(
                                 navController.slideFromRight(R.id.swapTokenSelectFragment)
                             }
                         )
+
+                         */
                     }
                     VSpacer(12.dp)
                 }

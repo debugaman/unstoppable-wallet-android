@@ -88,6 +88,8 @@ fun ManageAccountsScreen(navController: NavController, mode: ManageAccountsModul
                     ManageAccountsModule.Mode.Switcher -> ManageAccountsModule.prepareParams(R.id.manageAccountsFragment, true)
                 }
 
+                //Need to hide it
+                /*
                 val actions = listOf(
                     ActionViewItem(R.drawable.ic_plus, R.string.ManageAccounts_CreateNewWallet) {
                         navController.navigateWithTermsAccepted {
@@ -101,6 +103,8 @@ fun ManageAccountsScreen(navController: NavController, mode: ManageAccountsModul
                         navController.slideFromRight(R.id.watchAddressFragment, args)
                     }
                 )
+                 */
+                var actions = emptyList<ActionViewItem>();
                 CellUniversalLawrenceSection(actions) {
                     RowUniversal(
                         onClick = it.callback
@@ -174,6 +178,7 @@ private fun AccountsSection(accounts: List<AccountViewItem>, viewModel: ManageAc
                 iconTint = ComposeAppTheme.colors.leah
             }
 
+            /*
             ButtonSecondaryCircle(
                 modifier = Modifier.padding(horizontal = 16.dp),
                 icon = icon,
@@ -184,6 +189,8 @@ private fun AccountsSection(accounts: List<AccountViewItem>, viewModel: ManageAc
                     ManageAccountModule.prepareParams(accountViewItem.accountId)
                 )
             }
+
+             */
         }
     }
 }

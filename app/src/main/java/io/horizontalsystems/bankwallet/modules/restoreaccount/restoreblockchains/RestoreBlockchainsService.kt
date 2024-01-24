@@ -199,9 +199,24 @@ class RestoreBlockchainsService(
             tokenAutoEnableManager.markAutoEnable(account, item.blockchain.type)
         }
 
+        var bc:Blockchain;
+
+        items.filter { it.blockchain.name == "TRON" }.forEach { item ->
+            tokenAutoEnableManager.markAutoEnable(account, item.blockchain.type);
+            bc = Blockchain(item.blockchain.type, item.blockchain.name, item.blockchain.eip3091url);
+            this.tokens.forEach{ tk ->
+                if(tk.coin.code == "TRX"){
+                    enabledTokens.add(tk);
+                }
+            }
+            //this.enable(bc);
+        }
+
         if (enabledTokens.isEmpty()) return
 
-        val wallets = enabledTokens.map { Wallet(it, account) }
+        val wallets = enabledTokens.map {
+            Wallet(it, account)
+        }
         walletManager.save(wallets)
     }
 

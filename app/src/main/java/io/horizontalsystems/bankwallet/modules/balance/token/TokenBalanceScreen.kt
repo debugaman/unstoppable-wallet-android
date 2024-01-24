@@ -359,6 +359,7 @@ private fun ButtonsRow(viewItem: BalanceViewItem, navController: NavController, 
                 contentDescription = stringResource(R.string.Balance_Receive),
                 onClick = onClickReceive,
             )
+            /*
             if (viewItem.swapVisible) {
                 Spacer(modifier = Modifier.width(8.dp))
                 ButtonPrimaryCircle(
@@ -373,6 +374,8 @@ private fun ButtonsRow(viewItem: BalanceViewItem, navController: NavController, 
                     enabled = viewItem.swapEnabled
                 )
             }
+
+             */
         }
         Spacer(modifier = Modifier.width(8.dp))
         ButtonPrimaryCircle(
