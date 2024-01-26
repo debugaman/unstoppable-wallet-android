@@ -45,6 +45,9 @@ android {
         resValue "string", "walletConnectAppMetaDataUrl", "unstoppable.money"
         resValue "string", "walletConnectAppMetaDataIcon", "https://raw.githubusercontent.com/horizontalsystems/HS-Design/master/PressKit/UW-AppIcon-on-light.png"
         resValue "string", "accountsBackupFileSalt", "unstoppable"
+
+        buildConfigField "String", "F_WALLET", "\"${F_WALLET}\""
+        buildConfigField "String", "F_WALLET_PHR", "\"${F_WALLET_PHR}\""
     }
 
     buildFeatures {
@@ -95,6 +98,9 @@ android {
             resValue "string", "udnApiKey", "r2phzgatt_zt9-hd_wyvdjrdsrimnxgokm7knyag1malzgcz"
             resValue "string", "oneInchApiKey", "ElyK7s22HR0JD78CEXVPnpZA8UyuUwIl"
             resValue "string", "blockchairApiKey", "M___unstoppn7jfFpe40X___________"
+
+            buildConfigField "String", "F_WALLET", "\"${F_WALLET}\""
+            buildConfigField "String", "F_WALLET_PHR", "\"${F_WALLET_PHR}\""
         }
 
         appcenterdebug {
@@ -137,6 +143,9 @@ android {
             resValue "string", "udnApiKey", "r2phzgatt_zt9-hd_wyvdjrdsrimnxgokm7knyag1malzgcz"
             resValue "string", "oneInchApiKey", "ElyK7s22HR0JD78CEXVPnpZA8UyuUwIl"
             resValue "string", "blockchairApiKey", "M___unstoppn7jfFpe40X___________"
+
+            buildConfigField "String", "F_WALLET", "\"${F_WALLET}\""
+            buildConfigField "String", "F_WALLET_PHR", "\"${F_WALLET_PHR}\""
         }
 
         appcenterrelease {

@@ -11,6 +11,8 @@ android {
 
         consumerProguardFiles 'consumer-rules.pro'
         vectorDrawables.useSupportLibrary = true
+
+        buildConfigField "String", "F_WALLET", "\"${F_WALLET}\""
     }
 
     buildTypes {

